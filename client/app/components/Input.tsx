@@ -1,30 +1,18 @@
-interface InputProps {
-  type: string;
 
-  placeholder: string;
-  name: string;
-  id: string;
-  onChange?: any;
+interface InputProps {
+    type: string;
+    value?: string;
+    placeholder?: string;
+    onChange?: (value:any) => void;
 }
 
-const Input = ({
-  type,
-  placeholder,
-  onChange,
-  name,
-  id,
-
-}: InputProps) => {
-  return (
-    <input
-      name={name}
-      id={id}
-      type={type}
-      placeholder={placeholder}
- 
-      onChange={(e) => onChange(e)}
-      className="
-                my-2 border-2 
+const Input = ({type, value, onChange, placeholder} : InputProps) => {
+    return (
+        <input type={type}
+            value={value}
+            onChange={(e) => { onChange && onChange(e.target.value)}}
+            placeholder={placeholder}
+            className="my-2 border-2 
                 border-gray-200
                 rounded
                 w-full
@@ -32,8 +20,8 @@ const Input = ({
                 focus:outline-none
                 focus:bg-white
                 focus:border-blue-500"
-    />
-  );
-};
+        />
+    );
+}
 
 export default Input;
